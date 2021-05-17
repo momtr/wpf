@@ -1,0 +1,51 @@
+﻿<Window x:Class="FileStatistics.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileStatistics"
+        xmlns:vm="clr-namespace:FileStatistics.ViewModel"
+        mc:Ignorable="d"
+        Title="FileStatistics" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+    <DockPanel Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}">
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="Open" Command="{Binding OpenFileCommand}" />
+                <Separator />
+                <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Command="{Binding AboutCommand}" />
+            </MenuItem>
+        </Menu>
+        <Grid Margin="0,64,0,-0.333" Width="699">
+            <TextBlock FontWeight="Bold" FontSize="40">File Statistics</TextBlock>
+            <Grid Margin="0,92,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="Bold" FontSize="14">Name</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1" FontWeight="Bold" FontSize="14">Directory</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="2" FontWeight="Bold" FontSize="14">Bytes</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="3" FontWeight="Bold" FontSize="14">Lines</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="4" FontWeight="Bold" FontSize="14">Shortest Line</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding File.Name}"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding File.Directory}"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding File.Bytes}"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding File.Lines}"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding File.ShortestLine}"></TextBlock>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>

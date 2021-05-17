@@ -1,0 +1,56 @@
+﻿<Window x:Class="ColorPanel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ColorPanel"
+        xmlns:vm="clr-namespace:ColorPanel.ViewModel"
+        xmlns:c="clr-namespace:ColorPanel.Validation"
+        mc:Ignorable="d"
+        Title="ColorMixer" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+    <Grid Background="{Binding Color}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="20, 40,20,40" VerticalAlignment="Center">
+            <Slider Minimum="0" Maximum="255" Margin="0,0,0,20" Value="{Binding R, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Slider Minimum="0" Maximum="255" Margin="0,0,0,20" Value="{Binding G, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Slider Minimum="0" Maximum="255" Value="{Binding B, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="{Binding Color}" Margin="0,40,0,0" FontWeight="Bold" FontSize="40" Foreground="{Binding ContrastColor}"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+            <TextBox Margin="0,0,0,20" FontWeight="Bold" FontSize="30">
+                <TextBox.Text>
+                    <Binding Path="R" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <c:NumberRangeRule Min="0" Max="255" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Margin="0,0,0,20" FontWeight="Bold" FontSize="30">
+                <TextBox.Text>
+                    <Binding Path="G" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <c:NumberRangeRule Min="0" Max="255" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Margin="0,0,0,20" FontWeight="Bold" FontSize="30">
+                <TextBox.Text>
+                    <Binding Path="B" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <c:NumberRangeRule Min="0" Max="255" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </StackPanel>
+    </Grid>
+</Window>
