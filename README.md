@@ -106,7 +106,7 @@ vertical positioning
 ```
 
 ## 3 Binding
-## 3.1 Property change
+### 3.1 Property change
 ```csharp
     private void UpdateProperty(string propName)
     {
@@ -119,7 +119,7 @@ example:
 ```
 > Update in setters!
 
-## 3.2 Property
+### 3.2 Property
 ```csharp
     public int A {
         get => _a;
@@ -138,12 +138,12 @@ example:
 - `UpdateSourceTrigger=PropertyChanged`
 - `ValidatesOnDataErrors=True` used together with IDateErrorInfo
 
-## 3.3.1 XAML bindings as attributes
+### 3.3.1 XAML bindings as attributes
 ```csharp
     "{Binding FirstSchoolDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
 ```
 
-## 3.3.1 XAML bindings as elements
+### 3.3.1 XAML bindings as elements
 - used together with validation rules
 ```csharp
     <TextBox Grid.Row="2" Grid.Column="1" Background="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" Foreground="White" Margin="0,46.8,-0.8,46.8">
