@@ -209,6 +209,7 @@ example:
 ```
 
 ## 6 Validation
+### 6.1 ValidationRule (View Validation)
 - implement `ValidationRule`
 - method: `public override ValidationResult Validate(object value, CultureInfo cultureInfo)`
 ```csharp
@@ -225,6 +226,44 @@ example:
         }
 
     }
+```
+
+### 6.2 IDataErrorInfo (View Model Validation)
+- validation in view model, if validation depends on multiple fields or is more complex
+- - otherwiese, use validation rules
+- implement interface `IDataErrorInfo`
+```csharp
+public string Error => throw new NotImplementedException();
+
+public string this[string columnName]
+{
+    get
+    {
+        string res = String.Empty;
+        if (columnName == "RepeatPassword")
+        {
+            if (Password != null && RepeatPassword != null && !Password.Equals(RepeatPassword))
+            {
+                res = "Passwords must match";
+            }
+        }
+        if (columnName == "Password")
+        {
+            if (Password != null && RepeatPassword != null && !Password.Equals(RepeatPassword))
+            {
+                res = "Passwords must match";
+            }
+        }
+        if (columnName == "FirstSchoolDay")
+        {
+            if (Birthday >= FirstSchoolDay)
+            {
+                res = "FirstSchoolDay must be after birthdate";
+            }
+        }
+        return res;
+    }
+}
 ```
 
 # Don't forget
